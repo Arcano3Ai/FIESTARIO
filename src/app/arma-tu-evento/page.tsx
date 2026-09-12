@@ -24,6 +24,8 @@ import {
   Flower2,
   Cake,
   Armchair,
+  Car,
+  Award,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -80,13 +82,16 @@ export default function ArmaTuEventoPage() {
     { id: "Lugar / Locación", label: "Quinta, Hacienda o Salón", icon: Building2 },
     { id: "Banquete / Taquiza", label: "Catering, Taquiza o Parrillada", icon: UtensilsCrossed },
     { id: "Bebidas / Mixología", label: "Barra Libre o Coctelería Móvil", icon: Wine },
-    { id: "Música / DJ", label: "DJ, Grupo Norteño o Mariachi", icon: Music },
+    { id: "Música / DJ", label: "DJ, Orquesta, Norteño o Mariachi", icon: Music },
+    { id: "Autos / Transportación", label: "Autos Clásicos, Sprinter VIP o Carruajes", icon: Car },
+    { id: "Animación / Shows", label: "Circo Contemporáneo, Fuego o Performance", icon: Sparkles },
+    { id: "Wedding Planner", label: "Coordinación Integral & Concierge VIP", icon: Award },
     { id: "Decoración / Globos", label: "Escenografía, Globos o Letras Neón", icon: Sparkles },
     { id: "Flores", label: "Diseño Floral & Centros de Mesa", icon: Flower2 },
     { id: "Fotografía", label: "Fotógrafo Editorial de Evento", icon: Camera },
     { id: "Pastel & Dulces", label: "Wedding Cake o Mesa de Postres", icon: Cake },
     { id: "Mobiliario", label: "Sillas Crossback, Salas Lounge", icon: Armchair },
-    { id: "Entretenimiento", label: "Cabina 360 o Show Especial", icon: PartyPopper },
+    { id: "Entretenimiento", label: "Cabina 360 o Glambot", icon: PartyPopper },
   ];
 
   const toggleNeed = (id: string) => {

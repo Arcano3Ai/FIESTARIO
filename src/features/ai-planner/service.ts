@@ -138,14 +138,39 @@ export function generateAIEvaluation(prompt: string, eventType?: EventType, gues
 
       // Check event type match
       if (vendor.eventTypes.includes(detectedType)) {
-        score += 8;
+        score += 6;
         reasons.push(`Especialista probado en ${detectedType}`);
       }
 
       // Check style match
       if (vendor.styles.includes(suggestedStyle)) {
         score += 4;
-        reasons.push(`Alineado al estilo ${suggestedStyle}`);
+        reasons.push(`Alineado al concepto ${suggestedStyle}`);
+      }
+
+      // Check keyword interest (autos, música, shows, banquetes, planners)
+      if (
+        (lower.includes("auto") || lower.includes("coche") || lower.includes("transporte") || lower.includes("limusina")) &&
+        vendor.categoryId === "autos"
+      ) {
+        score += 8;
+        reasons.push("Vehículo de colección / Transportación VIP seleccionada");
+      }
+
+      if (
+        (lower.includes("show") || lower.includes("animacion") || lower.includes("circo") || lower.includes("fuego") || lower.includes("pirotecnia")) &&
+        vendor.categoryId === "shows"
+      ) {
+        score += 8;
+        reasons.push("Show de alto impacto escénico recomendado");
+      }
+
+      if (
+        (lower.includes("musica") || lower.includes("dj") || lower.includes("mariachi") || lower.includes("orquesta") || lower.includes("cuerdas") || lower.includes("banda")) &&
+        (vendor.categoryId === "musica-vivo" || vendor.categoryId === "musica-dj")
+      ) {
+        score += 8;
+        reasons.push("Ensamble musical curado para tu celebración");
       }
 
       // Check rating
@@ -156,7 +181,7 @@ export function generateAIEvaluation(prompt: string, eventType?: EventType, gues
 
       // Check verification
       if (vendor.verified) {
-        reasons.push("Proveedor Verificado FIESTARIO");
+        reasons.push("✓ Proveedor Verificado FIESTARIO");
       }
 
       if (vendor.responseTime.includes("min") || vendor.responseTime.includes("< 1 hora")) {
@@ -173,7 +198,7 @@ export function generateAIEvaluation(prompt: string, eventType?: EventType, gues
       };
     })
     .sort((a, b) => b.matchScore - a.matchScore)
-    .slice(0, 4);
+    .slice(0, 6);
 
   // Suggested timeline checklist
   const suggestedChecklist = [

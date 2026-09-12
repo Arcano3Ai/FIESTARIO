@@ -122,7 +122,7 @@ export default function HomePage() {
             href="/categorias"
             className="group flex items-center gap-1 text-sm font-medium text-fiestario-carbon hover:text-fiestario-gold transition-colors mt-3 md:mt-0"
           >
-            <span>Ver las 15 categorías</span>
+            <span>Ver las 18 categorías</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>

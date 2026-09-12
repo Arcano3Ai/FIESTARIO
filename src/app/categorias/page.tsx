@@ -6,7 +6,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export const metadata = {
   title: "Categorías de Eventos · FIESTARIO México",
-  description: "Explora las 15 categorías esenciales de proveedores para eventos en México: quintas, banquetes, taquizas, decoración, DJs, mariachi, fotografía y más.",
+  description: "Explora las 18 categorías especializadas de proveedores para eventos en México: quintas, banquetes, autos clásicos, animación, DJs, mariachi, fotografía y más.",
 };
 
 export default function CategoriasPage() {

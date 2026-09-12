@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { categories } from "@/data/categories";
 import { cities } from "@/data/cities";
+import { cn } from "@/lib/utils";
 
 export default function PublicarNegocioPage() {
   const router = useRouter();
@@ -33,6 +34,7 @@ export default function PublicarNegocioPage() {
   const [yearsExperience, setYearsExperience] = useState("5");
   const [phone, setPhone] = useState("+52 81 ");
   const [email, setEmail] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState<"200" | "400" | "600">("400");
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -221,6 +223,78 @@ export default function PublicarNegocioPage() {
                         placeholder="contacto@tunegocio.com"
                         className="w-full text-sm p-3 rounded-xl border border-fiestario-stoneMuted/50 focus:outline-none focus:border-fiestario-gold bg-fiestario-cream/20"
                       />
+                    </div>
+                  </div>
+
+                  {/* Plan Selection ($200, $400, $600 MXN) */}
+                  <div className="pt-2">
+                    <label className="block text-xs font-semibold text-fiestario-carbon mb-2">
+                      Selecciona tu Plan de Afiliación Mensual *
+                    </label>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      {[
+                        {
+                          id: "200",
+                          name: "Esencial",
+                          price: "$200",
+                          period: "MXN / mes",
+                          badge: "Económico",
+                          desc: "Perfil básico, 8 fotos, cotizaciones directas.",
+                        },
+                        {
+                          id: "400",
+                          name: "Destacado Pro",
+                          price: "$400",
+                          period: "MXN / mes",
+                          badge: "Recomendado",
+                          desc: "Insignia ✓ Verificado, fotos ilimitadas, analíticas.",
+                        },
+                        {
+                          id: "600",
+                          name: "Elite Exclusivo",
+                          price: "$600",
+                          period: "MXN / mes",
+                          badge: "Máximo Alcance",
+                          desc: "Prioridad en Fiestario Match IA y portada.",
+                        },
+                      ].map((p) => {
+                        const isSelected = selectedPlan === p.id;
+                        return (
+                          <div
+                            key={p.id}
+                            onClick={() => setSelectedPlan(p.id as any)}
+                            className={cn(
+                              "p-4 rounded-2xl border cursor-pointer transition-all flex flex-col justify-between text-left relative",
+                              isSelected
+                                ? "border-fiestario-gold bg-fiestario-champagne/15 shadow-sm ring-2 ring-fiestario-gold/30"
+                                : "border-fiestario-stoneMuted/40 bg-white hover:border-fiestario-gold/50"
+                            )}
+                          >
+                            <div>
+                              <div className="flex items-center justify-between mb-1">
+                                <span className="text-xs font-bold text-fiestario-carbon">{p.name}</span>
+                                <span className="text-[10px] bg-fiestario-cream px-2 py-0.5 rounded-full text-fiestario-goldDark font-semibold">
+                                  {p.badge}
+                                </span>
+                              </div>
+                              <div className="flex items-baseline gap-1 my-1">
+                                <span className="font-serif text-xl font-bold text-fiestario-carbon">{p.price}</span>
+                                <span className="text-[10px] text-fiestario-stone">{p.period}</span>
+                              </div>
+                              <p className="text-[11px] text-fiestario-stone leading-tight mt-1">
+                                {p.desc}
+                              </p>
+                            </div>
+                            <div className="mt-3 flex items-center justify-end text-fiestario-gold">
+                              {isSelected ? (
+                                <CheckCircle2 className="w-4 h-4 text-fiestario-gold fill-fiestario-gold/20" />
+                              ) : (
+                                <div className="w-4 h-4 rounded-full border border-gray-300" />
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
 
